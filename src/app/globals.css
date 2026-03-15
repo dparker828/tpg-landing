@@ -33,303 +33,281 @@
   --font-signature: var(--font-script);
 }
 
-/* ─── Base ─── */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ─── Base Reset ─── */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-cream);
+    color: var(--color-text);
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-terracotta);
+    color: var(--color-cream);
+  }
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-cream);
-  color: var(--color-text);
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ─── Component Classes (in @layer components so utilities can override) ─── */
+@layer components {
+
+  /* Typography */
+  .heading-display {
+    font-family: var(--font-serif), 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 10vw, 104px);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--color-charcoal);
+  }
+
+  .heading-hero {
+    font-family: var(--font-serif), 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--color-charcoal);
+  }
+
+  .heading-section {
+    font-family: var(--font-serif), 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-charcoal);
+  }
+
+  .heading-sub {
+    font-family: var(--font-serif), 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--color-charcoal);
+  }
+
+  .body-large {
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: clamp(17px, 1.8vw, 21px);
+    line-height: 1.75;
+    color: var(--color-text-muted);
+  }
+
+  .body-text {
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--color-text);
+  }
+
+  .body-sm {
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .caption-text {
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  /* Buttons */
+  .cta-primary {
+    display: inline-block;
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-cream);
+    background-color: var(--color-terracotta);
+    padding: 14px 32px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-primary:hover {
+    background-color: var(--color-terracotta-hover);
+    transform: translateY(-1px);
+  }
+
+  .cta-ghost {
+    display: inline-block;
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-charcoal);
+    background: transparent;
+    padding: 14px 32px;
+    border: 1px solid var(--color-charcoal);
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-ghost:hover {
+    background-color: var(--color-charcoal);
+    color: var(--color-cream);
+  }
+
+  .cta-nav {
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-cream);
+    background-color: var(--color-terracotta);
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-nav:hover {
+    background-color: var(--color-terracotta-hover);
+  }
+
+  /* Layout */
+  .section-padding {
+    padding: 80px 0;
+  }
+
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Decorative */
+  .section-rule {
+    width: 48px;
+    height: 2px;
+    background-color: var(--color-terracotta);
+  }
+
+  /* Reveal Animations */
+  .reveal-hidden {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Link Underline Effect */
+  .link-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background-color: var(--color-terracotta);
+    transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .link-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Form Inputs */
+  .form-input {
+    font-family: var(--font-sans), 'Poppins', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    border: 1px solid rgba(28, 25, 23, 0.12);
+    background-color: transparent;
+    color: var(--color-charcoal);
+    outline: none;
+    transition: border-color 300ms ease;
+  }
+
+  .form-input:focus {
+    border-color: var(--color-terracotta);
+  }
+
+  .form-input::placeholder {
+    color: var(--color-text-faint);
+  }
 }
 
-body {
-  overflow-x: hidden;
-}
-
-/* ─── Typography ─── */
-
-.heading-display {
-  font-family: var(--font-serif), 'Cormorant Garamond', serif;
-  font-size: clamp(56px, 10vw, 104px);
-  font-weight: 400;
-  line-height: 1.0;
-  letter-spacing: -0.04em;
-  color: var(--color-charcoal);
-}
-
-.heading-hero {
-  font-family: var(--font-serif), 'Cormorant Garamond', serif;
-  font-size: clamp(40px, 6vw, 72px);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--color-charcoal);
-}
-
-.heading-section {
-  font-family: var(--font-serif), 'Cormorant Garamond', serif;
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--color-charcoal);
-}
-
-.heading-sub {
-  font-family: var(--font-serif), 'Cormorant Garamond', serif;
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 400;
-  line-height: 1.35;
-  color: var(--color-charcoal);
-}
-
-.body-large {
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: clamp(17px, 1.8vw, 21px);
-  line-height: 1.75;
-  color: var(--color-text-muted);
-}
-
-.body-text {
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.65;
-  color: var(--color-text);
-}
-
-.body-sm {
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.5;
-}
-
-.caption-text {
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-}
-
-.eyebrow {
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
-/* ─── Buttons ─── */
-
-.cta-primary {
-  display: inline-block;
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-cream);
-  background-color: var(--color-terracotta);
-  padding: 14px 32px;
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: background-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.cta-primary:hover {
-  background-color: var(--color-terracotta-hover);
-  transform: translateY(-1px);
-}
-
-.cta-ghost {
-  display: inline-block;
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-charcoal);
-  background: transparent;
-  padding: 14px 32px;
-  border: 1px solid var(--color-charcoal);
-  cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.cta-ghost:hover {
-  background-color: var(--color-charcoal);
-  color: var(--color-cream);
-}
-
-.cta-nav {
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-cream);
-  background-color: var(--color-terracotta);
-  padding: 10px 20px;
-  border-radius: 4px;
-  transition: background-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.cta-nav:hover {
-  background-color: var(--color-terracotta-hover);
-}
-
-/* ─── Layout ─── */
-
-.section-padding {
-  padding: 80px 0;
-}
-
+/* ─── Responsive overrides (outside layer for specificity) ─── */
 @media (min-width: 768px) {
   .section-padding {
     padding: 120px 0;
   }
-}
-
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-@media (min-width: 768px) {
   .content-container {
     padding: 0 48px;
   }
-}
-
-/* container class for footer etc */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-@media (min-width: 768px) {
   .container {
     padding: 0 48px;
   }
 }
 
-/* ─── Decorative ─── */
-
-.section-rule {
-  width: 48px;
-  height: 2px;
-  background-color: var(--color-terracotta);
-}
-
-/* ─── Reveal Animations ─── */
-
-.reveal-hidden {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ─── Keyframe Animations ─── */
-
+/* ─── Keyframe Animations (must be outside layers) ─── */
 @keyframes countUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.count-animated {
-  animation: countUp 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer components {
+  .count-animated {
+    animation: countUp 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .fade-in-up {
+    animation: fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-}
-
-.fade-in-up {
-  animation: fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* ─── Page Transitions ─── */
-.page-transition {
-  transition: opacity 500ms ease-out, transform 500ms ease-out;
-}
-
-/* ─── Link Underline Effect ─── */
-
-.link-underline {
-  position: relative;
-  text-decoration: none;
-}
-
-.link-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  height: 1px;
-  width: 0;
-  background-color: var(--color-terracotta);
-  transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.link-underline:hover::after {
-  width: 100%;
-}
-
-/* ─── Form Inputs ─── */
-
-.form-input {
-  font-family: var(--font-sans), 'Poppins', sans-serif;
-  font-size: 15px;
-  padding: 14px 16px;
-  border: 1px solid rgba(28, 25, 23, 0.12);
-  background-color: transparent;
-  color: var(--color-charcoal);
-  outline: none;
-  transition: border-color 300ms ease;
-}
-
-.form-input:focus {
-  border-color: var(--color-terracotta);
-}
-
-.form-input::placeholder {
-  color: var(--color-text-faint);
-}
-
-/* ─── Selection Color ─── */
-::selection {
-  background-color: var(--color-terracotta);
-  color: var(--color-cream);
+  .page-transition {
+    transition: opacity 500ms ease-out, transform 500ms ease-out;
+  }
 }
