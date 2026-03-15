@@ -47,7 +47,6 @@ export default function BeforeAfter({
     setDragging(false);
   }, []);
 
-  // Prevent text selection while dragging
   useEffect(() => {
     if (dragging) {
       document.body.style.userSelect = "none";
@@ -66,10 +65,27 @@ export default function BeforeAfter({
 
   return (
     <section style={{ backgroundColor: "var(--color-cream)" }}>
+      <div className="content-container pb-4">
+        <Reveal>
+          <div className="flex items-center gap-4 mb-10">
+            <span
+              className="block w-8 h-[1px]"
+              style={{ backgroundColor: "var(--color-text-faint)" }}
+            />
+            <span
+              className="eyebrow"
+              style={{ color: "var(--color-text-faint)" }}
+            >
+              The Difference
+            </span>
+          </div>
+        </Reveal>
+      </div>
+
       <Reveal>
         <div
           ref={containerRef}
-          className="relative w-full aspect-[16/9] cursor-ew-resize select-none overflow-hidden"
+          className="relative w-full aspect-[16/9] max-h-[600px] cursor-ew-resize select-none overflow-hidden"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -95,17 +111,20 @@ export default function BeforeAfter({
                 className="absolute inset-0 flex flex-col items-center justify-center"
                 style={{
                   background:
-                    "linear-gradient(145deg, #F5EDE3, #e8e0d4, #FFF8F2)",
+                    "linear-gradient(160deg, #F5EDE3, #e8dfd4, #FFF8F2)",
                 }}
               >
-                <span className="label-text text-xs" style={{ color: "rgba(28,25,23,0.12)" }}>
-                  AFTER
-                </span>
                 <span
-                  className="font-[family-name:var(--font-cormorant)] italic text-lg mt-2"
+                  className="eyebrow text-[9px]"
                   style={{ color: "rgba(28,25,23,0.1)" }}
                 >
-                  Ready for market
+                  AFTER PREPARATION
+                </span>
+                <span
+                  className="font-[family-name:var(--font-cormorant)] italic text-[20px] mt-3"
+                  style={{ color: "rgba(28,25,23,0.08)" }}
+                >
+                  Market ready
                 </span>
               </div>
             )}
@@ -129,15 +148,18 @@ export default function BeforeAfter({
                 className="absolute inset-0 flex flex-col items-center justify-center"
                 style={{
                   background:
-                    "linear-gradient(145deg, #c8bfb4, #b0a89c, #9e968b)",
+                    "linear-gradient(160deg, #c8bfb4, #b0a89c, #9e968b)",
                 }}
               >
-                <span className="label-text text-xs" style={{ color: "rgba(255,248,242,0.25)" }}>
+                <span
+                  className="eyebrow text-[9px]"
+                  style={{ color: "rgba(255,248,242,0.2)" }}
+                >
                   BEFORE
                 </span>
                 <span
-                  className="font-[family-name:var(--font-cormorant)] italic text-lg mt-2"
-                  style={{ color: "rgba(255,248,242,0.18)" }}
+                  className="font-[family-name:var(--font-cormorant)] italic text-[20px] mt-3"
+                  style={{ color: "rgba(255,248,242,0.14)" }}
                 >
                   Full of potential
                 </span>
@@ -150,14 +172,14 @@ export default function BeforeAfter({
             className="absolute top-0 bottom-0 w-[2px] -translate-x-1/2 z-10"
             style={{
               left: `${position}%`,
-              backgroundColor: "white",
+              backgroundColor: "rgba(255,255,255,0.9)",
             }}
           >
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center"
               style={{
                 backgroundColor: "var(--color-tpg-blue)",
-                boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
               }}
             >
               <svg
@@ -180,38 +202,31 @@ export default function BeforeAfter({
         </div>
       </Reveal>
 
-      {/* Caption area */}
-      <div className="content-container py-10 text-center">
+      {/* Caption */}
+      <div className="content-container py-12 md:py-14">
         <Reveal delay={200}>
-          <p className="font-[family-name:var(--font-poppins)] font-normal text-[13px]"
-            style={{ color: "var(--color-text)" }}
-          >
-            This home sold for{" "}
-            <span
-              className="font-[family-name:var(--font-cormorant)] font-semibold text-[16px]"
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <p
+              className="font-[family-name:var(--font-poppins)] font-light text-[14px]"
+              style={{ color: "var(--color-text-muted)" }}
+            >
+              This home sold for{" "}
+              <span
+                className="font-[family-name:var(--font-cormorant)] font-semibold text-[20px]"
+                style={{ color: "var(--color-terracotta)" }}
+              >
+                $38,000
+              </span>{" "}
+              more after preparation. The homeowner paid nothing upfront.
+            </p>
+            <button
+              onClick={scrollToForm}
+              className="shrink-0 font-[family-name:var(--font-poppins)] font-medium text-[12px] tracking-wide uppercase hover:underline underline-offset-4 transition-all"
               style={{ color: "var(--color-terracotta)" }}
             >
-              $38,000
-            </span>{" "}
-            more after preparation. The homeowner paid nothing upfront.
-          </p>
-        </Reveal>
-        <Reveal delay={300}>
-          <p
-            className="font-[family-name:var(--font-poppins)] text-[10px] mt-2"
-            style={{ color: "var(--color-text-faint)" }}
-          >
-            Drag to reveal
-          </p>
-        </Reveal>
-        <Reveal delay={400}>
-          <button
-            onClick={scrollToForm}
-            className="mt-4 font-[family-name:var(--font-poppins)] font-medium text-[13px] hover:underline transition-all"
-            style={{ color: "var(--color-terracotta)" }}
-          >
-            Your home could be next →
-          </button>
+              Your home could be next →
+            </button>
+          </div>
         </Reveal>
       </div>
     </section>

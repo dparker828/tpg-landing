@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import TrustBar from "@/components/TrustBar";
 import EmotionalBridge from "@/components/EmotionalBridge";
 import BeforeAfter from "@/components/BeforeAfter";
 import WhatWeDo from "@/components/WhatWeDo";
@@ -16,6 +17,7 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+        <TrustBar />
         <EmotionalBridge />
         <BeforeAfter />
         <WhatWeDo />

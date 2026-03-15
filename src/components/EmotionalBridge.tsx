@@ -5,22 +5,32 @@ export default function EmotionalBridge() {
     <section style={{ backgroundColor: "var(--color-cream)" }}>
       <div className="content-container section-padding flex flex-col items-center text-center">
         <Reveal>
+          <div className="section-rule mx-auto mb-12" />
+        </Reveal>
+        <Reveal delay={150}>
           <p
-            className="heading-sub max-w-[600px]"
-            style={{ fontStyle: "normal" }}
+            className="font-[family-name:var(--font-cormorant)] font-normal max-w-[640px]"
+            style={{
+              fontSize: "clamp(24px, 3.5vw, 38px)",
+              lineHeight: 1.5,
+              letterSpacing: "-0.02em",
+              color: "var(--color-text)",
+            }}
           >
-            A home sale is rarely just a transaction.
+            You already know your home needs work before it sells. 
+            What you need is someone who will{" "}
+            <em style={{ color: "var(--color-terracotta)" }}>
+              actually do it for you
+            </em>{" "}
+            — and not ask for a check upfront.
           </p>
         </Reveal>
-        <Reveal delay={200}>
+        <Reveal delay={300}>
           <p
-            className="font-[family-name:var(--font-poppins)] font-light text-[15px] leading-relaxed max-w-[440px] mt-6"
-            style={{ color: "var(--color-text-muted)" }}
+            className="font-[family-name:var(--font-poppins)] font-light text-[14px] leading-relaxed max-w-[420px] mt-8"
+            style={{ color: "var(--color-text-faint)" }}
           >
-            It&apos;s a new chapter, a necessary ending, or a long-overdue
-            beginning. We treat it that way — because the details of how your
-            home goes to market are the details of how one story closes and the
-            next one opens.
+            That&apos;s exactly what we built.
           </p>
         </Reveal>
       </div>

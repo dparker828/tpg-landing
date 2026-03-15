@@ -3,27 +3,27 @@ import Reveal from "./Reveal";
 const testimonials = [
   {
     quote:
-      "They handled the painters, the floors, the landscaping. We didn\u2019t lift a finger and sold for $38,000 more than we expected.",
+      "They handled the painters, the floors, the landscaping \u2014 every single thing. We didn\u2019t lift a finger, and our home sold for $38,000 more than we expected.",
     name: "Karen & Tom M.",
-    location: "Lewes, DE",
+    location: "Lewes, Delaware",
     initials: "KT",
   },
   {
     quote:
-      "I inherited my mother\u2019s home and had no idea where to start. They managed everything. I didn\u2019t pay a cent until closing.",
+      "I inherited my mother\u2019s home and had no idea where to start. They managed everything from the first phone call to closing day. I didn\u2019t pay a cent until the sale went through.",
     name: "David R.",
-    location: "Rehoboth Beach, DE",
+    location: "Rehoboth Beach, Delaware",
     initials: "DR",
   },
 ];
 
 function Stars() {
   return (
-    <div className="flex gap-0.5 mb-4">
+    <div className="flex gap-[2px] mb-5">
       {[...Array(5)].map((_, i) => (
         <span
           key={i}
-          className="text-[16px]"
+          className="text-[14px]"
           style={{ color: "var(--color-gold)" }}
         >
           ★
@@ -37,26 +37,37 @@ export default function Testimonials() {
   return (
     <section className="section-padding" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="content-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Reveal>
+          <div className="text-center mb-16">
+            <span
+              className="eyebrow"
+              style={{ color: "var(--color-text-faint)" }}
+            >
+              From Our Clients
+            </span>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {testimonials.map((t, i) => (
             <Reveal key={i} delay={i * 200}>
               <div
-                className="p-8 md:p-9"
+                className="p-10 md:p-12 h-full"
                 style={{
                   backgroundColor: "var(--color-cream)",
-                  border: "1px solid rgba(28,25,23,0.04)",
+                  border: "1px solid rgba(28,25,23,0.03)",
                 }}
               >
                 <Stars />
                 <blockquote
-                  className="font-[family-name:var(--font-cormorant)] italic font-normal text-[16px] leading-[1.7] mb-6"
+                  className="font-[family-name:var(--font-cormorant)] italic font-normal text-[18px] leading-[1.75] mb-8"
                   style={{ color: "var(--color-text)" }}
                 >
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center font-[family-name:var(--font-poppins)] font-semibold text-[10px]"
+                    className="w-10 h-10 rounded-full flex items-center justify-center font-[family-name:var(--font-poppins)] font-semibold text-[10px] tracking-wide"
                     style={{
                       backgroundColor: "var(--color-terracotta)",
                       color: "var(--color-cream)",
@@ -66,13 +77,13 @@ export default function Testimonials() {
                   </div>
                   <div>
                     <span
-                      className="block font-[family-name:var(--font-poppins)] font-semibold text-[12px]"
+                      className="block font-[family-name:var(--font-poppins)] font-medium text-[12px]"
                       style={{ color: "var(--color-text)" }}
                     >
                       {t.name}
                     </span>
                     <span
-                      className="block font-[family-name:var(--font-poppins)] font-normal text-[11px]"
+                      className="block font-[family-name:var(--font-poppins)] font-light text-[11px]"
                       style={{ color: "var(--color-text-faint)" }}
                     >
                       {t.location}

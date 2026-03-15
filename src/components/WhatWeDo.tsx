@@ -15,13 +15,13 @@ export default function WhatWeDo() {
       style={{ backgroundColor: "var(--color-cream-deep)" }}
     >
       <div className="content-container">
-        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
           {/* Photo */}
-          <div className="w-full md:w-[40%]">
+          <div className="w-full md:w-[42%]">
             <Reveal>
               <PhotoFrame
                 src="/images/be_where_1-2x.jpg"
-                alt="Working with clients"
+                alt="Celebrating a successful sale"
                 aspect="4:5"
                 shadowDirection="left"
               />
@@ -29,49 +29,58 @@ export default function WhatWeDo() {
           </div>
 
           {/* Text */}
-          <div className="w-full md:w-[55%]">
+          <div className="w-full md:w-[52%]">
             <Reveal>
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-4 mb-8">
                 <span
-                  className="block w-8 h-[1.5px]"
+                  className="block w-8 h-[1px]"
                   style={{ backgroundColor: "var(--color-text-faint)" }}
                 />
                 <span
                   className="eyebrow"
                   style={{ color: "var(--color-text-faint)" }}
                 >
-                  What We Do
+                  How It Works
                 </span>
               </div>
             </Reveal>
 
             <Reveal delay={150}>
               <h2
-                className="font-[family-name:var(--font-cormorant)] font-normal leading-snug mb-6"
+                className="font-[family-name:var(--font-cormorant)] font-normal leading-snug mb-8"
                 style={{
-                  fontSize: "clamp(24px, 3.5vw, 36px)",
+                  fontSize: "clamp(26px, 3.8vw, 40px)",
+                  letterSpacing: "-0.02em",
                   color: "var(--color-text)",
                 }}
               >
-                We walk through your home, build a plan, hire the contractors,
-                manage every detail — and you pay nothing until the day it
-                sells.
+                We walk through your home. We build the plan. We hire the
+                contractors. We manage every detail.
               </h2>
             </Reveal>
 
             <Reveal delay={300}>
               <p
-                className="font-[family-name:var(--font-poppins)] font-light text-sm leading-relaxed max-w-[420px] mb-8"
+                className="font-[family-name:var(--font-poppins)] font-light text-[15px] leading-[1.85] max-w-[440px] mb-6"
                 style={{ color: "var(--color-text-muted)" }}
               >
-                Paint. Flooring. Landscaping. Kitchen updates. Staging. The
-                punch list you&apos;ve been thinking about for months — we take
-                it entirely. Your home goes to market at its best. The cost
-                comes from proceeds at closing.
+                Paint, flooring, landscaping, kitchen updates, staging — the
+                entire punch list you&apos;ve been putting off. We take it from
+                first call to final walk-through.
               </p>
             </Reveal>
 
-            <Reveal delay={450}>
+            <Reveal delay={400}>
+              <p
+                className="font-[family-name:var(--font-cormorant)] italic font-normal text-[20px] mb-10"
+                style={{ color: "var(--color-terracotta)" }}
+              >
+                You pay nothing until closing day. Not a deposit. Not a draw.
+                Nothing.
+              </p>
+            </Reveal>
+
+            <Reveal delay={500}>
               <button onClick={scrollToForm} className="cta-primary w-full sm:w-auto">
                 See If Your Home Qualifies
               </button>
