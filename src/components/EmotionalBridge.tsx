@@ -1,36 +1,30 @@
-import Reveal from "./Reveal";
+"use client";
 
-export default function EmotionalBridge() {
+import Reveal from "@/components/Reveal";
+
+export function EmotionalBridge() {
   return (
-    <section style={{ backgroundColor: "var(--color-cream)" }}>
-      <div className="content-container section-padding flex flex-col items-center text-center">
-        <Reveal>
-          <div className="section-rule mx-auto mb-12" />
+    <section className="section-padding bg-charcoal text-cream">
+      <div className="content-container w-full max-w-3xl mx-auto text-center">
+        {/* Section Rule */}
+        <Reveal delay={0}>
+          <div className="section-rule mx-auto mb-10 bg-cream/30" />
         </Reveal>
-        <Reveal delay={150}>
-          <p
-            className="font-[family-name:var(--font-cormorant)] font-normal max-w-[640px]"
-            style={{
-              fontSize: "clamp(24px, 3.5vw, 38px)",
-              lineHeight: 1.5,
-              letterSpacing: "-0.02em",
-              color: "var(--color-text)",
-            }}
-          >
-            You already know your home needs work before it sells. 
-            What you need is someone who will{" "}
-            <em style={{ color: "var(--color-terracotta)" }}>
-              actually do it for you
-            </em>{" "}
-            — and not ask for a check upfront.
+
+        {/* Main Text */}
+        <Reveal delay={100}>
+          <p className="heading-sub text-cream">
+            You already know your home needs work before it sells. What you need
+            is someone who will{" "}
+            <span className="italic text-terracotta">actually do it for you</span>
+            {" — and not ask for a check upfront."}
           </p>
         </Reveal>
-        <Reveal delay={300}>
-          <p
-            className="font-[family-name:var(--font-poppins)] font-light text-[14px] leading-relaxed max-w-[420px] mt-8"
-            style={{ color: "var(--color-text-faint)" }}
-          >
-            That&apos;s exactly what we built.
+
+        {/* Supporting Text */}
+        <Reveal delay={200}>
+          <p className="body-text text-cream/60 mt-6">
+            That's exactly what we built.
           </p>
         </Reveal>
       </div>

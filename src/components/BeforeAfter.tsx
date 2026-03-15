@@ -1,231 +1,128 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
-import Image from "next/image";
-import Reveal from "./Reveal";
+import { useState, useRef } from "react";
+import Reveal from "@/components/Reveal";
 
-interface BeforeAfterProps {
-  beforeSrc?: string;
-  afterSrc?: string;
-}
-
-export default function BeforeAfter({
-  beforeSrc,
-  afterSrc,
-}: BeforeAfterProps) {
+export default function BeforeAfter() {
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState(35);
-  const [dragging, setDragging] = useState(false);
 
-  const updatePosition = useCallback((clientX: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setPosition(pct);
-  }, []);
+  const handlePointerDown = () => {
+    setIsDragging(true);
+  };
 
-  const onPointerDown = useCallback(
-    (e: React.PointerEvent) => {
-      setDragging(true);
-      updatePosition(e.clientX);
-      (e.target as HTMLElement).setPointerCapture(e.pointerId);
-    },
-    [updatePosition]
-  );
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDragging || !containerRef.current) return;
 
-  const onPointerMove = useCallback(
-    (e: React.PointerEvent) => {
-      if (!dragging) return;
-      updatePosition(e.clientX);
-    },
-    [dragging, updatePosition]
-  );
+    const rect = containerRef.current.getBoundingClientRect();
+    const newPosition = ((e.clientX - rect.left) / rect.width) * 100;
+    setSliderPosition(Math.max(0, Math.min(100, newPosition)));
+  };
 
-  const onPointerUp = useCallback(() => {
-    setDragging(false);
-  }, []);
-
-  useEffect(() => {
-    if (dragging) {
-      document.body.style.userSelect = "none";
-    } else {
-      document.body.style.userSelect = "";
-    }
-    return () => {
-      document.body.style.userSelect = "";
-    };
-  }, [dragging]);
-
-  const scrollToForm = () => {
-    const el = document.getElementById("contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const handlePointerUp = () => {
+    setIsDragging(false);
   };
 
   return (
-    <section style={{ backgroundColor: "var(--color-cream)" }}>
-      <div className="content-container pb-4">
+    <section className="section-padding bg-cream">
+      <div className="content-container max-w-[1200px]">
         <Reveal>
-          <div className="flex items-center gap-4 mb-10">
-            <span
-              className="block w-8 h-[1px]"
-              style={{ backgroundColor: "var(--color-text-faint)" }}
-            />
-            <span
-              className="eyebrow"
-              style={{ color: "var(--color-text-faint)" }}
-            >
-              The Difference
-            </span>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px w-6 bg-terracotta"></div>
+            <p className="eyebrow text-terracotta">THE DIFFERENCE</p>
           </div>
         </Reveal>
-      </div>
 
-      <Reveal>
-        <div
-          ref={containerRef}
-          className="relative w-full aspect-[16/9] max-h-[600px] cursor-ew-resize select-none overflow-hidden"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          role="slider"
-          aria-valuenow={Math.round(position)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-label="Before and after comparison slider"
-          tabIndex={0}
-        >
-          {/* After layer (full) */}
-          <div className="absolute inset-0">
-            {afterSrc ? (
-              <Image
-                src={afterSrc}
-                alt="After preparation"
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-            ) : (
-              <div
-                className="absolute inset-0 flex flex-col items-center justify-center"
-                style={{
-                  background:
-                    "linear-gradient(160deg, #F5EDE3, #e8dfd4, #FFF8F2)",
-                }}
-              >
-                <span
-                  className="eyebrow text-[9px]"
-                  style={{ color: "rgba(28,25,23,0.1)" }}
-                >
-                  AFTER PREPARATION
-                </span>
-                <span
-                  className="font-[family-name:var(--font-cormorant)] italic text-[20px] mt-3"
-                  style={{ color: "rgba(28,25,23,0.08)" }}
-                >
-                  Market ready
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Before layer (clipped) */}
+        <Reveal>
           <div
-            className="absolute inset-0"
-            style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-          >
-            {beforeSrc ? (
-              <Image
-                src={beforeSrc}
-                alt="Before preparation"
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-            ) : (
-              <div
-                className="absolute inset-0 flex flex-col items-center justify-center"
-                style={{
-                  background:
-                    "linear-gradient(160deg, #c8bfb4, #b0a89c, #9e968b)",
-                }}
-              >
-                <span
-                  className="eyebrow text-[9px]"
-                  style={{ color: "rgba(255,248,242,0.2)" }}
-                >
-                  BEFORE
-                </span>
-                <span
-                  className="font-[family-name:var(--font-cormorant)] italic text-[20px] mt-3"
-                  style={{ color: "rgba(255,248,242,0.14)" }}
-                >
-                  Full of potential
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Slider handle */}
-          <div
-            className="absolute top-0 bottom-0 w-[2px] -translate-x-1/2 z-10"
+            ref={containerRef}
+            className="relative w-full max-h-[600px] bg-gray-200 overflow-hidden rounded-lg"
             style={{
-              left: `${position}%`,
-              backgroundColor: "rgba(255,255,255,0.9)",
+              aspectRatio: "16 / 9",
+              cursor: isDragging ? "grabbing" : "grab",
             }}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerUp}
           >
+            {/* Before Side */}
+            <div className="absolute inset-0 w-full h-full">
+              <div
+                className="w-full h-full flex flex-col items-center justify-center text-white"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #C5B8A8 0%, #B8AFA0 100%)",
+                }}
+              >
+                <p className="text-xl md:text-2xl font-medium tracking-wide">
+                  BEFORE PREPARATION
+                </p>
+                <p className="text-sm md:text-base mt-2 opacity-80">
+                  As-Is Condition
+                </p>
+              </div>
+            </div>
+
+            {/* After Side */}
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center"
+              className="absolute inset-0 w-full h-full overflow-hidden"
               style={{
-                backgroundColor: "var(--color-tpg-blue)",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+                clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
               }}
             >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <div
+                className="w-full h-full flex flex-col items-center justify-center text-charcoal"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #D4C5B0 0%, #E8DDD0 100%)",
+                }}
               >
-                <path
-                  d="M5 9H13M5 9L7 7M5 9L7 11M13 9L11 7M13 9L11 11"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                <p className="text-xl md:text-2xl font-medium tracking-wide">
+                  AFTER PREPARATION
+                </p>
+                <p className="text-sm md:text-base mt-2 opacity-80">
+                  Market Ready
+                </p>
+              </div>
+            </div>
+
+            {/* Slider Handle */}
+            <div
+              className="absolute top-0 bottom-0 w-1 bg-terracotta"
+              style={{
+                left: `${sliderPosition}%`,
+                transform: "translateX(-50%)",
+              }}
+              onPointerDown={handlePointerDown}
+            >
+              <div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white border-2 border-terracotta rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing shadow-md"
+                onPointerDown={handlePointerDown}
+              >
+                <span className="text-terracotta text-sm font-bold select-none">
+                  ◀▶
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
 
-      {/* Caption */}
-      <div className="content-container py-12 md:py-14">
-        <Reveal delay={200}>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p
-              className="font-[family-name:var(--font-poppins)] font-light text-[14px]"
-              style={{ color: "var(--color-text-muted)" }}
-            >
-              This home sold for{" "}
-              <span
-                className="font-[family-name:var(--font-cormorant)] font-semibold text-[20px]"
-                style={{ color: "var(--color-terracotta)" }}
-              >
-                $38,000
-              </span>{" "}
-              more after preparation. The homeowner paid nothing upfront.
+        {/* Caption Row */}
+        <Reveal>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <p className="body-text text-charcoal max-w-md">
+              This home sold for <span className="font-medium">$38,000 more</span>{" "}
+              after preparation. The homeowner paid nothing upfront.
             </p>
-            <button
-              onClick={scrollToForm}
-              className="shrink-0 font-[family-name:var(--font-poppins)] font-medium text-[12px] tracking-wide uppercase hover:underline underline-offset-4 transition-all"
-              style={{ color: "var(--color-terracotta)" }}
-            >
-              Your home could be next →
-            </button>
+            <div className="flex justify-start md:justify-end">
+              <a
+                href="#"
+                className="text-terracotta font-medium hover:opacity-70 transition-opacity flex items-center gap-2"
+              >
+                YOUR HOME COULD BE NEXT →
+              </a>
+            </div>
           </div>
         </Reveal>
       </div>

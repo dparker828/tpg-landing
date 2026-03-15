@@ -1,41 +1,36 @@
-import Reveal from "./Reveal";
+"use client";
 
-const stats = [
-  { number: "$1B+", label: "in real estate sold" },
-  { number: "200+", label: "five-star reviews" },
-  { number: "11", label: "years in Delaware" },
+import Reveal from "@/components/Reveal";
+
+const STATS = [
+  {
+    metric: "$1B+",
+    label: "IN REAL ESTATE SOLD",
+  },
+  {
+    metric: "200+",
+    label: "FIVE-STAR REVIEWS",
+  },
+  {
+    metric: "11",
+    label: "YEARS IN DELAWARE",
+  },
 ];
 
-export default function TrustBar() {
+export function TrustBar() {
   return (
-    <section
-      style={{
-        backgroundColor: "var(--color-cream)",
-        borderTop: "1px solid rgba(28,25,23,0.04)",
-        borderBottom: "1px solid rgba(28,25,23,0.04)",
-      }}
-    >
-      <div className="content-container py-12 md:py-14">
-        <div className="flex items-center justify-center gap-12 md:gap-20">
-          {stats.map((item, i) => (
-            <Reveal key={item.label} delay={i * 120}>
-              <div className="text-center">
-                <span
-                  className="block font-[family-name:var(--font-cormorant)] font-semibold tracking-tight"
-                  style={{
-                    fontSize: "clamp(24px, 3vw, 36px)",
-                    color: "var(--color-text)",
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  {item.number}
-                </span>
-                <span
-                  className="block font-[family-name:var(--font-poppins)] font-light text-[10px] tracking-wider uppercase mt-1"
-                  style={{ color: "var(--color-text-faint)" }}
-                >
-                  {item.label}
-                </span>
+    <section className="bg-cream-deep border-t border-b border-charcoal/5">
+      <div className="content-container w-full py-8 lg:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:justify-between">
+          {STATS.map((stat, index) => (
+            <Reveal key={stat.label} delay={index * 100}>
+              <div className="text-center md:text-left">
+                <p className="font-serif text-charcoal clamp(text-2xl, 5vw, text-5xl) font-normal">
+                  {stat.metric}
+                </p>
+                <p className="eyebrow text-charcoal/60 mt-2">
+                  {stat.label}
+                </p>
               </div>
             </Reveal>
           ))}

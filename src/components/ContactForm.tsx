@@ -1,180 +1,99 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Reveal from "./Reveal";
-import PhotoFrame from "./PhotoFrame";
+import { useState } from 'react';
+import Reveal from '@/components/Reveal';
 
-export default function ContactForm() {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+export function ContactForm() {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim() && phone.trim()) {
-      setSubmitted(true);
-    }
+    setSubmitted(true);
+    setName('');
+    setPhone('');
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
-    <section
-      id="contact"
-      className="section-padding"
-      style={{ backgroundColor: "var(--color-cream-deep)" }}
-    >
-      <div className="content-container">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
-          {/* Photo (desktop only) */}
-          <div className="hidden md:block md:w-[40%]">
-            <Reveal>
-              <PhotoFrame
-                src="/images/be_where_1-2x.jpg"
-                alt="New beginnings"
-                aspect="4:5"
-                shadowDirection="left"
-              />
-            </Reveal>
-          </div>
+    <Reveal>
+      <section className="section-padding bg-cream" id="contact">
+        <div className="content-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* Image Placeholder */}
+            <div className="w-full aspect-[4/5] bg-cream-deep rounded-none flex items-center justify-center">
+              <p className="text-charcoal text-opacity-40">Photo</p>
+            </div>
 
-          {/* Form */}
-          <div className="w-full md:w-[52%]">
-            {!submitted ? (
-              <>
-                <Reveal>
-                  <div className="section-rule mb-10" />
-                </Reveal>
+            {/* Form */}
+            <div>
+              <div className="section-rule" />
+              <h2 className="heading-section mt-4">
+                Let's talk about your home.
+              </h2>
+              <p className="body-text mt-4">
+                Leave your name and number. Dustin or Rachel will call you personally within 24 hours.
+              </p>
 
-                <Reveal delay={100}>
-                  <h2
-                    className="font-[family-name:var(--font-cormorant)] font-normal mb-4"
-                    style={{
-                      fontSize: "clamp(30px, 4.5vw, 44px)",
-                      letterSpacing: "-0.02em",
-                      lineHeight: 1.15,
-                      color: "var(--color-text)",
-                    }}
-                  >
-                    Let&apos;s talk about
-                    <br />
-                    your home.
-                  </h2>
-                </Reveal>
-
-                <Reveal delay={200}>
-                  <p
-                    className="font-[family-name:var(--font-poppins)] font-light text-[15px] mb-10"
-                    style={{ color: "var(--color-text-muted)" }}
-                  >
-                    Leave your name and number. Dustin or Rachel will call you
-                    personally within 24 hours.
+              {submitted ? (
+                <div className="mt-8 p-6 bg-cream-deep rounded-sm">
+                  <p className="heading-sub text-charcoal flex items-center gap-2">
+                    <span className="text-terracotta text-xl">✓</span>
+                    Thank you. We'll be in touch within 24 hours.
                   </p>
-                </Reveal>
-
-                <form onSubmit={handleSubmit}>
-                  <Reveal delay={300}>
-                    <input
-                      type="text"
-                      placeholder="Your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="form-input mb-6"
-                      required
-                    />
-                  </Reveal>
-
-                  <Reveal delay={400}>
-                    <input
-                      type="tel"
-                      placeholder="Best phone number"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="form-input mb-10"
-                      required
-                    />
-                  </Reveal>
-
-                  <Reveal delay={500}>
+                </div>
+              ) : (
+                <>
+                  <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-2">
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your name"
+                        className="form-input w-full"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-charcoal mb-2">
+                        Phone
+                      </label>
+                      <input
+                        id="phone"
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="(302) 555-0000"
+                        className="form-input w-full"
+                        required
+                      />
+                    </div>
                     <button type="submit" className="cta-primary w-full">
                       Request a Free Walk-Through
                     </button>
-                  </Reveal>
+                  </form>
 
-                  <Reveal delay={600}>
-                    <p
-                      className="font-[family-name:var(--font-poppins)] font-light text-[11px] mt-5 text-center"
-                      style={{ color: "var(--color-text-faint)" }}
-                    >
-                      No cost. No obligation. Just a conversation.
+                  <p className="caption-text text-center mt-3 text-muted">
+                    No cost. No obligation. Just a conversation.
+                  </p>
+
+                  <div className="mt-6 pt-6 border-t border-charcoal border-opacity-10">
+                    <p className="text-sm text-charcoal text-opacity-60">
+                      ★★★★★ 200+ five-star reviews
                     </p>
-                  </Reveal>
-
-                  <Reveal delay={700}>
-                    <div
-                      className="mt-8 pt-6 flex items-center justify-center gap-3"
-                      style={{
-                        borderTop: "1px solid rgba(28,25,23,0.05)",
-                      }}
-                    >
-                      <div className="flex gap-[1px]">
-                        {[...Array(5)].map((_, i) => (
-                          <span
-                            key={i}
-                            className="text-[12px]"
-                            style={{ color: "var(--color-gold)" }}
-                          >
-                            ★
-                          </span>
-                        ))}
-                      </div>
-                      <span
-                        className="font-[family-name:var(--font-poppins)] font-light text-[11px]"
-                        style={{ color: "var(--color-text-faint)" }}
-                      >
-                        200+ five-star reviews
-                      </span>
-                    </div>
-                  </Reveal>
-                </form>
-              </>
-            ) : (
-              <div className="text-center py-16">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8"
-                  style={{ backgroundColor: "var(--color-terracotta)" }}
-                >
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5 13l4 4L19 7"
-                      stroke="#FFF8F2"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <h3
-                  className="font-[family-name:var(--font-cormorant)] font-normal text-[28px] mb-4"
-                  style={{ color: "var(--color-text)", letterSpacing: "-0.02em" }}
-                >
-                  We&apos;ll be in touch.
-                </h3>
-                <p
-                  className="font-[family-name:var(--font-poppins)] font-light text-[14px]"
-                  style={{ color: "var(--color-text-muted)" }}
-                >
-                  Expect a call from Dustin or Rachel within 24 hours.
-                </p>
-              </div>
-            )}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Reveal>
   );
 }

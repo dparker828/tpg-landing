@@ -1,69 +1,66 @@
 "use client";
 
-import Reveal from "./Reveal";
-
-const situations = [
-  "Your home needs work and you don\u2019t have the cash to start.",
-  "You inherited a property and don\u2019t know where to begin.",
-  "You know that selling as-is means leaving tens of thousands on the table.",
-  "You\u2019ve been putting this off because the thought of managing contractors feels impossible.",
-];
+import Reveal from "@/components/Reveal";
 
 export default function WhoThisIsFor() {
+  const scenarios = [
+    "Your home needs work and you don't have the cash to start.",
+    "You inherited a property and don't know where to begin.",
+    "You know that selling as-is means leaving tens of thousands on the table.",
+    "You've been putting this off because the thought of managing contractors feels impossible.",
+    "You're going through a transition and need someone who will just handle it.",
+  ];
+
   return (
-    <section
-      className="section-padding"
-      style={{ backgroundColor: "var(--color-cream)" }}
-    >
-      <div className="content-container max-w-[760px] mx-auto">
+    <section className="section-padding bg-cream">
+      <div className="content-container">
+        {/* Section Rule */}
         <Reveal>
-          <div className="section-rule mb-12" />
+          <div className="w-12 h-px bg-terracotta mb-8"></div>
         </Reveal>
-        <Reveal delay={100}>
-          <h2
-            className="heading-section mb-14"
-            style={{
-              fontStyle: "italic",
-              fontSize: "clamp(28px, 4.5vw, 44px)",
-            }}
-          >
-            This is for the homeowner who&apos;s been putting it off.
+
+        {/* Heading */}
+        <Reveal delay={50}>
+          <h2 className="heading-section italic text-charcoal font-serif">
+            This is for the homeowner who's been putting it off.
           </h2>
         </Reveal>
 
-        <div>
-          {situations.map((text, i) => (
-            <Reveal key={i} delay={i * 120}>
+        {/* Scenarios List */}
+        <div className="mt-12 max-w-2xl space-y-0">
+          {scenarios.map((scenario, index) => (
+            <Reveal key={index} delay={100 + index * 75}>
               <div
-                className="flex items-start gap-6 py-6"
+                className="flex gap-6 py-6 border-b border-charcoal"
                 style={{
-                  borderBottom: "1px solid rgba(28,25,23,0.05)",
+                  borderBottomColor: "rgba(28, 25, 23, 0.05)",
                 }}
               >
-                <span
-                  className="font-[family-name:var(--font-cormorant)] font-semibold text-[20px] shrink-0 w-7 text-right"
-                  style={{ color: "rgba(184,112,75,0.3)" }}
-                >
-                  {i + 1}
-                </span>
                 <p
-                  className="font-[family-name:var(--font-poppins)] font-normal text-[16px] leading-[1.7]"
-                  style={{ color: "rgba(28,25,23,0.55)" }}
+                  className="font-serif flex-shrink-0 w-8 text-center"
+                  style={{
+                    fontSize: "20px",
+                    color: "rgba(184, 112, 75, 0.4)",
+                  }}
                 >
-                  {text}
+                  {index + 1}
                 </p>
+                <p className="body-text text-charcoal">{scenario}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={600}>
+        {/* Closing Statement */}
+        <Reveal delay={550}>
           <p
-            className="font-[family-name:var(--font-cormorant)] italic font-normal text-[18px] mt-12"
-            style={{ color: "var(--color-text-faint)" }}
+            className="mt-8 italic font-serif text-charcoal"
+            style={{
+              fontSize: "20px",
+              color: "var(--color-terracotta)",
+            }}
           >
-            If any of these sound familiar, you&apos;re exactly who we built
-            this for.
+            If any of these sound familiar, you're exactly who we built this for.
           </p>
         </Reveal>
       </div>

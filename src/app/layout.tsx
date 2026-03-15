@@ -1,51 +1,56 @@
-import type { Metadata } from "next";
-import { Cormorant_Garamond, Poppins, Dancing_Script } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import {
+  Cormorant_Garamond,
+  Poppins,
+  Dancing_Script,
+} from 'next/font/google';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import './globals.css';
 
 const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-serif',
+  display: 'swap',
 });
 
 const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  display: "swap",
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-sans',
+  display: 'swap',
 });
 
-const dancing = Dancing_Script({
-  variable: "--font-dancing",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
+const dancingScript = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-script',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "The Parker Group | Pre-Sale Home Preparation",
+  title: 'The Parker Group | Delaware Real Estate',
   description:
-    "Managed repairs, staging, and preparation — paid from your closing proceeds, not your pocket. The only service of its kind in Delaware.",
-  openGraph: {
-    title: "The Parker Group | Pre-Sale Home Preparation",
-    description:
-      "Your home needs work before it sells. We do the work. You keep the money.",
-    type: "website",
-  },
+    'We help homeowners prepare, navigate, and sell their homes with less chaos, more clarity, and a better result. The only pre-sale preparation service of its kind in Delaware.',
+  viewport: 'width=device-width, initial-scale=1',
+  authors: [{ name: 'The Parker Group' }],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${cormorant.variable} ${poppins.variable} ${dancing.variable}`}
-      >
-        {children}
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${poppins.variable} ${dancingScript.variable}`}
+    >
+      <body>
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -1,27 +1,28 @@
-import Reveal from "./Reveal";
+'use client';
 
-export default function ClosingLine() {
+import Reveal from '@/components/Reveal';
+
+export function ClosingLine() {
   return (
-    <section
-      style={{ backgroundColor: "var(--color-charcoal-light)" }}
-      className="py-24 md:py-32"
-    >
-      <div className="content-container text-center">
-        <Reveal>
-          <p
-            className="font-[family-name:var(--font-cormorant)] italic font-normal mx-auto max-w-[600px]"
-            style={{
-              fontSize: "clamp(18px, 2.5vw, 26px)",
-              lineHeight: 1.6,
-              color: "rgba(255,248,242,0.3)",
-            }}
-          >
-            The best time to prepare your home was last month.
-            <br />
-            The second best time is a phone call away.
-          </p>
-        </Reveal>
-      </div>
-    </section>
+    <Reveal>
+      <section className="bg-charcoal py-24 md:py-32">
+        <div className="content-container">
+          <div className="text-center max-w-3xl mx-auto">
+            <p
+              className="heading-sub text-cream italic"
+              style={{ opacity: 0.7 }}
+            >
+              The best time to prepare your home was last month.
+            </p>
+            <p
+              className="heading-sub text-cream italic mt-4"
+              style={{ opacity: 0.7 }}
+            >
+              The second best time is a phone call away.
+            </p>
+          </div>
+        </div>
+      </section>
+    </Reveal>
   );
 }
