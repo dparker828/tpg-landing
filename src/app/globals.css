@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+/* ============================================
+   TPG Landing — Design System
+   ============================================ */
+
+:root {
+  --color-cream: #FFF8F2;
+  --color-cream-deep: #F5EDE3;
+  --color-charcoal: #1C1917;
+  --color-charcoal-light: #2C2824;
+  --color-terracotta: #B8704B;
+  --color-terracotta-hover: #9A5C3A;
+  --color-sage: #3D5A45;
+  --color-sage-light: #4A6B52;
+  --color-text: #1C1917;
+  --color-text-muted: rgba(28,25,23,0.45);
+  --color-text-faint: rgba(28,25,23,0.25);
+  --color-tpg-blue: #53BAE0;
+  --color-gold: #CC9758;
+}
+
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-charcoal: var(--color-charcoal);
+  --color-charcoal-light: var(--color-charcoal-light);
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-hover: var(--color-terracotta-hover);
+  --color-sage: var(--color-sage);
+  --color-sage-light: var(--color-sage-light);
+  --color-tpg-blue: var(--color-tpg-blue);
+  --color-gold: var(--color-gold);
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-poppins);
+  --font-signature: var(--font-dancing);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-text);
+  font-family: var(--font-poppins), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   Typography Utilities
+   ============================================ */
+
+.heading-hero {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+
+.heading-section {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.heading-sub {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+.body-text {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 300;
+  font-size: clamp(14px, 1.6vw, 17px);
+  line-height: 1.75;
+  color: var(--color-text-muted);
+}
+
+.eyebrow {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.label-text {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   CTA Button Styles
+   ============================================ */
+
+.cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-terracotta);
+  color: var(--color-cream);
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 400ms, transform 400ms, box-shadow 400ms;
+}
+
+.cta-primary:hover {
+  background-color: var(--color-terracotta-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184,112,75,0.2);
+}
+
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-cream);
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border: 1.5px solid rgba(255,248,242,0.2);
+  cursor: pointer;
+  transition: background-color 400ms, border-color 400ms, color 400ms, transform 400ms;
+}
+
+.cta-ghost:hover {
+  background-color: var(--color-cream);
+  border-color: var(--color-cream);
+  color: var(--color-charcoal);
+  transform: translateY(-2px);
+}
+
+.cta-nav {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-terracotta);
+  color: var(--color-cream);
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 400ms, transform 400ms;
+}
+
+.cta-nav:hover {
+  background-color: var(--color-terracotta-hover);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   Reveal Animation
+   ============================================ */
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================
+   Form Input Styles
+   ============================================ */
+
+.form-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(28,25,23,0.08);
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--color-text);
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 300ms;
+}
+
+.form-input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.form-input:focus {
+  border-bottom-color: var(--color-tpg-blue);
+}
+
+/* ============================================
+   Section Spacing
+   ============================================ */
+
+.section-padding {
+  padding-top: clamp(80px, 14vw, 160px);
+  padding-bottom: clamp(80px, 14vw, 160px);
+}
+
+.content-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: clamp(24px, 4vw, 64px);
+  padding-right: clamp(24px, 4vw, 64px);
+}
