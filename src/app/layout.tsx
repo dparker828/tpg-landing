@@ -33,8 +33,12 @@ export const metadata: Metadata = {
   title: 'The Parker Group | Delaware Real Estate',
   description:
     'We help homeowners prepare, navigate, and sell their homes with less chaos, more clarity, and a better result. The only pre-sale preparation service of its kind in Delaware.',
-  viewport: 'width=device-width, initial-scale=1',
   authors: [{ name: 'The Parker Group' }],
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({

@@ -1,32 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant_Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Dancing_Script:wght@400;600&display=swap');
+@import "tailwindcss";
 
-@theme {
-  --color-cream: #F5F1ED;
+/* ─── Design Tokens ─── */
+:root {
+  --color-cream: #FFF8F2;
+  --color-cream-deep: #F5EDE3;
   --color-charcoal: #1C1917;
-  --color-terracotta: #C85A3A;
-  --color-gold: #D4AF37;
-  --color-sage: #6B8E6F;
-  --color-text-primary: #1C1917;
-  --color-text-muted: #6B7280;
-  --color-border: #E5E7EB;
-  --color-background: #FFFFFF;
-  --color-overlay-dark: rgba(28, 25, 23, 0.85);
-  --color-overlay-light: rgba(245, 241, 237, 0.05);
+  --color-charcoal-light: #2C2824;
+  --color-terracotta: #B8704B;
+  --color-terracotta-hover: #9A5C3A;
+  --color-sage: #3D5A45;
+  --color-sage-light: #4A6B52;
+  --color-text: #1C1917;
+  --color-text-muted: rgba(28,25,23,0.45);
+  --color-text-faint: rgba(28,25,23,0.25);
+  --color-tpg-blue: #53BAE0;
+  --color-gold: #CC9758;
 }
 
+@theme inline {
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-charcoal: var(--color-charcoal);
+  --color-charcoal-light: var(--color-charcoal-light);
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-hover: var(--color-terracotta-hover);
+  --color-sage: var(--color-sage);
+  --color-sage-light: var(--color-sage-light);
+  --color-tpg-blue: var(--color-tpg-blue);
+  --color-gold: var(--color-gold);
+  --font-heading: var(--font-serif);
+  --font-body: var(--font-sans);
+  --font-signature: var(--font-script);
+}
+
+/* ─── Base ─── */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-text);
+  font-family: var(--font-sans), 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,46 +54,45 @@ body {
   overflow-x: hidden;
 }
 
-/* Typography Classes */
+/* ─── Typography ─── */
+
 .heading-display {
-  font-family: 'Cormorant_Garamond', serif;
+  font-family: var(--font-serif), 'Cormorant Garamond', serif;
   font-size: clamp(56px, 10vw, 104px);
   font-weight: 400;
   line-height: 1.0;
   letter-spacing: -0.04em;
+  color: var(--color-charcoal);
 }
 
-.heading-lg {
-  font-family: 'Cormorant_Garamond', serif;
-  font-size: clamp(32px, 5vw, 56px);
+.heading-hero {
+  font-family: var(--font-serif), 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 6vw, 72px);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--color-charcoal);
+}
+
+.heading-section {
+  font-family: var(--font-serif), 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.15;
   letter-spacing: -0.02em;
-}
-
-.heading-md {
-  font-family: 'Cormorant_Garamond', serif;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.3;
-}
-
-.heading-sm {
-  font-family: 'Cormorant_Garamond', serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1.4;
+  color: var(--color-charcoal);
 }
 
 .heading-sub {
-  font-family: 'Cormorant_Garamond', serif;
-  font-size: 20px;
+  font-family: var(--font-serif), 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.35;
+  color: var(--color-charcoal);
 }
 
 .body-large {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
   font-weight: 300;
   font-size: clamp(17px, 1.8vw, 21px);
   line-height: 1.75;
@@ -82,21 +100,22 @@ body {
 }
 
 .body-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.65;
+  color: var(--color-text);
 }
 
 .body-sm {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
 }
 
 .caption-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 1.6;
@@ -104,16 +123,57 @@ body {
 }
 
 .eyebrow {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
+/* ─── Buttons ─── */
+
+.cta-primary {
+  display: inline-block;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-cream);
+  background-color: var(--color-terracotta);
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background-color 300ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-primary:hover {
+  background-color: var(--color-terracotta-hover);
+  transform: translateY(-1px);
+}
+
+.cta-ghost {
+  display: inline-block;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  background: transparent;
+  padding: 14px 32px;
+  border: 1px solid var(--color-charcoal);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-ghost:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+}
+
 .cta-nav {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-sans), 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--color-cream);
@@ -124,10 +184,72 @@ body {
 }
 
 .cta-nav:hover {
-  background-color: #b34d2e;
+  background-color: var(--color-terracotta-hover);
 }
 
-/* Animations */
+/* ─── Layout ─── */
+
+.section-padding {
+  padding: 80px 0;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 120px 0;
+  }
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    padding: 0 48px;
+  }
+}
+
+/* container class for footer etc */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 48px;
+  }
+}
+
+/* ─── Decorative ─── */
+
+.section-rule {
+  width: 48px;
+  height: 2px;
+  background-color: var(--color-terracotta);
+}
+
+/* ─── Reveal Animations ─── */
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Keyframe Animations ─── */
+
 @keyframes countUp {
   from {
     opacity: 0;
@@ -158,12 +280,13 @@ body {
   animation: fadeInUp 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Page Transitions */
+/* ─── Page Transitions ─── */
 .page-transition {
   transition: opacity 500ms ease-out, transform 500ms ease-out;
 }
 
-/* Link Underline Effect */
+/* ─── Link Underline Effect ─── */
+
 .link-underline {
   position: relative;
   text-decoration: none;
@@ -184,117 +307,29 @@ body {
   width: 100%;
 }
 
-/* Layout Utilities */
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
+/* ─── Form Inputs ─── */
+
+.form-input {
+  font-family: var(--font-sans), 'Poppins', sans-serif;
+  font-size: 15px;
+  padding: 14px 16px;
+  border: 1px solid rgba(28, 25, 23, 0.12);
+  background-color: transparent;
+  color: var(--color-charcoal);
+  outline: none;
+  transition: border-color 300ms ease;
 }
 
-.section {
-  padding: 80px 0;
+.form-input:focus {
+  border-color: var(--color-terracotta);
 }
 
-.section-sm {
-  padding: 40px 0;
+.form-input::placeholder {
+  color: var(--color-text-faint);
 }
 
-/* Grid System */
-.grid {
-  display: grid;
-  gap: 32px;
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-/* Spacing */
-.pt-8 {
-  padding-top: 32px;
-}
-
-.pb-8 {
-  padding-bottom: 32px;
-}
-
-.py-8 {
-  padding-top: 32px;
-  padding-bottom: 32px;
-}
-
-.py-12 {
-  padding-top: 48px;
-  padding-bottom: 48px;
-}
-
-.py-20 {
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
-.mb-4 {
-  margin-bottom: 16px;
-}
-
-.mb-8 {
-  margin-bottom: 32px;
-}
-
-.mb-12 {
-  margin-bottom: 48px;
-}
-
-/* Flexbox */
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.gap-4 {
-  gap: 16px;
-}
-
-.gap-6 {
-  gap: 24px;
-}
-
-.gap-8 {
-  gap: 32px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .section {
-    padding: 40px 0;
-  }
-
-  .grid-cols-2,
-  .grid-cols-3,
-  .grid-cols-4 {
-    grid-template-columns: 1fr;
-  }
+/* ─── Selection Color ─── */
+::selection {
+  background-color: var(--color-terracotta);
+  color: var(--color-cream);
 }
