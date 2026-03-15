@@ -58,7 +58,7 @@ export function Hero() {
           </div>
 
           {/* Gap */}
-          <div className="hidden lg:block" />
+          <div className="hidden lg:block lg:order-2" />
 
           {/* Right Column: Image */}
           <div className="flex flex-col items-center order-1 lg:order-3 mb-8 lg:mb-0">
