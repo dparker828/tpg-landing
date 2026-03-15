@@ -16,10 +16,11 @@ export default function WhatWeDo() {
     >
       <div className="content-container">
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-          {/* Photo left */}
+          {/* Photo */}
           <div className="w-full md:w-[40%]">
             <Reveal>
               <PhotoFrame
+                src="/images/be_where_1-2x.jpg"
                 alt="Working with clients"
                 aspect="4:5"
                 shadowDirection="left"
@@ -27,7 +28,7 @@ export default function WhatWeDo() {
             </Reveal>
           </div>
 
-          {/* Text right */}
+          {/* Text */}
           <div className="w-full md:w-[55%]">
             <Reveal>
               <div className="flex items-center gap-3 mb-6">
@@ -35,7 +36,10 @@ export default function WhatWeDo() {
                   className="block w-8 h-[1.5px]"
                   style={{ backgroundColor: "var(--color-text-faint)" }}
                 />
-                <span className="eyebrow" style={{ color: "var(--color-text-faint)" }}>
+                <span
+                  className="eyebrow"
+                  style={{ color: "var(--color-text-faint)" }}
+                >
                   What We Do
                 </span>
               </div>

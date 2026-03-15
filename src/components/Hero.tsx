@@ -19,6 +19,7 @@ export default function Hero() {
         <div className="block md:hidden mb-10">
           <Reveal>
             <PhotoFrame
+              src="/images/the-parkers.jpg"
               alt="Dustin & Rachel Parker"
               aspect="16:9"
               label="Dustin & Rachel Parker"
@@ -137,6 +138,7 @@ export default function Hero() {
           <div className="hidden md:block md:w-[35%] mt-16">
             <Reveal delay={300}>
               <PhotoFrame
+                src="/images/the-parkers.jpg"
                 alt="Dustin & Rachel Parker"
                 aspect="3:4"
                 label="Dustin & Rachel Parker"

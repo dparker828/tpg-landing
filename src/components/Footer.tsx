@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer
@@ -8,12 +10,13 @@ export default function Footer() {
     >
       <div className="content-container py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <span
-            className="font-[family-name:var(--font-poppins)] font-semibold text-sm lowercase tracking-wide"
-            style={{ color: "rgba(255,248,242,0.3)" }}
-          >
-            the parker group
-          </span>
+          <Image
+            src="/images/tpg-logo.png"
+            alt="The Parker Group"
+            width={120}
+            height={34}
+            className="h-7 w-auto opacity-30"
+          />
           <div
             className="flex flex-wrap items-center justify-center gap-2 font-[family-name:var(--font-poppins)] font-light text-[10px]"
             style={{ color: "rgba(255,248,242,0.15)" }}

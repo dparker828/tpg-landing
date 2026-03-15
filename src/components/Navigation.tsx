@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,12 +30,14 @@ export default function Navigation() {
       }}
     >
       <div className="content-container flex items-center justify-between h-14">
-        <span
-          className="font-[family-name:var(--font-poppins)] font-semibold text-sm lowercase tracking-wide"
-          style={{ color: "var(--color-charcoal)" }}
-        >
-          the parker group
-        </span>
+        <Image
+          src="/images/tpg-logo.png"
+          alt="The Parker Group"
+          width={140}
+          height={40}
+          className="h-8 w-auto"
+          priority
+        />
         <button onClick={scrollToForm} className="cta-nav">
           Let&apos;s Talk
         </button>
